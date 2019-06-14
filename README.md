@@ -9,9 +9,4 @@ Features:
   -ADMIN_ROLE: can edit enable of users
 -datas in external database
 
-Technologies:
--Maven
--Spring Boot Secutity
--JPA
--Heroku PostgreSQL database
--Thymeleaf
+Technologies: Maven, Spring Boot Secutity, JPA, JavaMailSender, Heroku PostgreSQL database, Thymeleaf
