@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="layouts/main :: head"></head>
+<body>
+	<div class="container">
+
+		<header th:replace="layouts/main :: private-header"></header>
+
+		<section>
+			
+
+
+			<article>
+
+				<header>
+					<h1 th:text="${error}">the code of error</h1>
+				</header>
+
+				<section>
+					<p th:text="${message}">the message of error</p>
+				</section>
+
+				
+
+			</article>
+		</section>
+
+		<footer th:replace="layouts/main :: footer"></footer>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:fragment="head">
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="/css/style.css"
+	th:href="@{/css/style.css}" />
+<title>forum</title>
+</head>
+<body>
+
+<!-- header after authentication -->
+	<header th:fragment="private-header">
+		<nav>
+			<div>
+				<span sec:authentication="name">Someone</span>'s account
+			</div>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a>Topics</a>
+					<ul>
+						<li><a href="/tag/travelling">Travelling</a></li>
+						<li><a href="/tag/business">Business</a></li>
+						<li><a href="/tag/healthylife">Healthy Life</a></li>
+						<li><a href="/tag/it">IT</a></li>
+					</ul>
+				</li>
+				<li><a sec:authorize="hasRole('ROLE_ADMIN')" href="/users">Edit users</a></li>
+				<li>
+				<form sec:authorize="isAuthenticated()" id="frmlogout"
+						th:action="@{/logout}" method="post" class="form-inline">
+						<a href="javascript:{}"
+							onclick="document.getElementById('frmlogout').submit(); return false;">Log
+							out</a>
+				</form>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+<!-- header before authentication -->
+	<header th:fragment="header-login">
+		<nav>
+			<div>Welcome on the page!</div>
+			<ul>
+				<li><a href="/login">Log in</a></li>
+				<li><a href="/registration">Sign up</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+<!-- footer -->
+	<footer class="footer-main" th:fragment="footer">
+		<div class="container">
+			<ul class="footer">
+				<li>made by Bence Gerstmár</li>
+				<li>e-mail: </li>
+				<li>mobile: </li>
+			</ul>
+		</div>
+	</footer>
+</body>
+</html>

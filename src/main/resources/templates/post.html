@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="layouts/main :: head"></head>
+<body>
+
+	<header th:replace="layouts/main :: private-header"></header>
+
+	<section>
+
+<!-- post article -->
+		<article class="article-basic">
+			<div>
+				<h3>
+					<a class="a-post-title" th:href="@{/post/__${post.id}__}" th:text="${post.title}">The title of the post</a>
+				</h3>
+				<span th:text="${post.user.username}">Username</span> | 
+				<span class="date" th:text="${post.posted}">2019-01-01 10:00</span>
+				<p class="content" th:utext="${post.content}">This is the content of post</p>
+			</div>
+		</article>
+
+<!-- new comment -->
+		<article class="article-comment">
+			<form th:action="@{/post/__${post.id}__}" method="post">
+				<h4>Write a comment to the topic</h4>
+				<textarea rows=7 name="content" placeholder="Your comment"></textarea>
+				<br>
+				<button type="submit">Send</button>
+			</form>
+		</article>
+
+<!-- list of comments -->
+		<article class="article-comment" th:each="comment : ${comments}">
+			<section>
+				<p th:text="${comment.posted}">Posted on September 31, 2015 at
+					10:00 PM</p>
+				<p th:text="${comment.user.username}">Who did write this comment</p>
+			</section>
+
+			<section class="content" th:utext="${comment.content}">
+				<p>You can write here your qouestion</p>
+			</section>
+		</article>
+	</section>
+
+	<footer th:replace="layouts/main :: footer"></footer>
+	
+</body>
+</html>

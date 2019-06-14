@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="layouts/main :: head">
+<title>Sign in please!</title>
+</head>
+
+<body>
+
+	<header th:replace="layouts/main :: header-login"></header>
+
+	<section>
+	
+<!-- log in form -->
+		<article class="article-auth">
+			<form name="login" th:action="@{/login}" method="post">
+				<h2>Sign in, please!</h2>
+				<div class="alert-error" th:if="${param.error}">Invalid username or password</div>
+				<div th:if="${param.logout}" class="alert-success">Log out successful</div>
+				<div class="alert-success" th:if="${param.activation} ">Registration successful. Please check your mailbox for activation code</div>
+				<div>
+					<label for="username">User name</label> 
+					<input type="text"name="username" placeholder="User name" required="true" />
+				</div>
+				<div>
+					<label for="password">Password</label> 
+					<input type="password" name="password" placeholder="Password" required="true" />
+				</div>
+				<button type="submit">Log in!</button>
+			</form>
+			<div>
+				<a href="/registration">Click here to sign up</a>
+			</div>
+		</article>
+	</section>
+
+	<footer th:replace="layouts/main :: footer"></footer>
+
+</body>
+</html>

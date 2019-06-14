@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="layouts/main :: head"></head>
+<body>
+
+	<header th:replace="layouts/main :: private-header"></header>
+
+	<section>
+
+		<!-- post article -->
+		<article class="article-basic">
+			<form name="posting" th:action="@{/posting}" th:object="${post}"method="post">
+				<div class="div-new-post">
+					<h3>Write a new post</h3>
+					<input type="text" name="title" th:field="*{title}" placeholder="Give a title to your post" /> 
+					<select name="tag"
+						id="tag" th:field="*{tag}">
+						<option value="travelling">Travelling</option>
+						<option value="healthyLife">Healthy life</option>
+						<option value="business">Business</option>
+						<option value="it">IT</option>
+					</select>
+				</div>
+				<br> <label for="content">Content</label>
+				<textarea rows=7 name="content" th:field="*{content}" placeholder="Just write here your post"></textarea>
+				<br> <br>
+				<button type="submit">Send</button>
+			</form>
+		</article>
+	</section>
+
+	<footer th:replace="layouts/main :: footer"></footer>
+	
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="layouts/main :: head">
+<body>
+
+	<header th:replace="layouts/main :: header-login"></header>
+
+	<section>
+	
+<!-- sign up form -->
+		<article class="article-auth">
+			<form name="login" th:action="@{/registration}" th:object="${user}" method="post">
+				<h2>Welcome on the sign up form</h2>
+				<div class="alert-success" th:if="${(err == false)}" th:utext="${successMessage}"></div>
+				<div class="alert-error" th:if="${(bindingResult != null && bindingResult.getAllErrors() != null)}">
+					<ul th:each="data : ${bindingResult.getAllErrors()}">
+						<li th:text="${data.getDefaultMessage()}"></li>
+					</ul>
+				</div>
+				<div class="div-signup">
+					<label for="email">E-mail</label> <input type="text" name="email"
+						th:field="*{email}" class="form-control" placeholder="E-mail" />
+				</div>
+				<div>
+					<label for="username">Username</label> <input type="text"
+						id="username" name="username" th:field="*{username}"
+						class="form-control" placeholder="User name" />
+				</div>
+				<div>
+					<label for="password">Password</label> <input type="password"
+						name="password" th:field="*{password}" placeholder="Password" />
+				</div>
+				<button type="submit">Sign up</button>
+			</form>
+		</article>
+	</section>
+
+	<footer th:replace="layouts/main :: footer"></footer>
+	
+</body>
+</html>

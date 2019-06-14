@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="layouts/main :: head">
+<body>
+
+	<header th:replace="layouts/main :: private-header"></header>
+	
+	<section>
+
+<!-- users form -->
+		<article class="article-auth">
+			<h1>This page is for edit users</h1>
+			<div class="div-users" th:each="user : ${users}">
+				
+					<h4 th:text="${user.username}">username</h4>
+					<p th:text="${user.email}">mail</p>
+					<a class="a-ban" th:if="${user.enabled} == true" th:href="@{/edituser/__${user.id}__}">Ban this user</a>
+					<a class="a-act" th:if="${user.enabled} == false and ${user.activation} == ''" th:href="@{/edituser/__${user.id}__}">Unlock this user</a>
+					<p th:if="${user.activation} != ''"> This user haven't activate yourself by email code</p>
+				
+			</div>
+		</article>
+	</section>
+
+	<footer th:replace="layouts/main :: footer"></footer>
+	
+</body>
+</html>

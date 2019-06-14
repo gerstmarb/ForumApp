@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="layouts/main :: head"></head>
+<body>
+
+	<header th:replace="layouts/main :: private-header"></header>
+
+	<section>
+	
+<!-- new post -->
+		<div class="div-add-post">
+			<a href="/newpost">Add a new post :)</a>
+		</div>
+
+<!-- post article -->
+		<article class="article-basic" th:each="post : ${posts}">
+			<div>
+				<h3>
+					<a class="a-post-title" th:href="@{/post/__${post.id}__}" th:text="${post.title}">Give a title</a>
+				</h3>
+				<span th:text="${post.user.username}">Username</span> | 
+				<span class="date" th:text="${post.posted}">2019-01-01 10:00</span>
+				<p class="content" th:utext="${post.content}">This is the content of post</p>
+			</div>
+		</article>
+	</section>
+
+	<footer th:replace="layouts/main :: footer"></footer>
+
+</body>
+</html>
